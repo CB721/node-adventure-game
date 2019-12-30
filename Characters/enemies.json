@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Goblin",
+        "attack": 7,
+        "health": 25,
+        "weapon": "sword"
+    },
+    {
+        "name": "Troll",
+        "attack": 11,
+        "health": 35,
+        "weapon": "club"
+    },
+    {
+        "name": "Fairy",
+        "attack": 2,
+        "health": 10,
+        "weapon": "wand"
+    },
+    {
+        "name": "Grick the Ghost",
+        "attack": 11,
+        "health": 75,
+        "weapon": "ghost"
+    },
+    {
+        "name": "Trevor the Knight",
+        "attack": 18,
+        "health": 60,
+        "weapon": "sword"
+    },
+    {
+        "name": "Castor the Cricket",
+        "attack": 17,
+        "health": 85,
+        "weapon": "flame ball"
+    },
+    {
+        "name": "Finity the Frog",
+        "attack": 22,
+        "health": 100,
+        "weapon": "poison dart"
+    }
+]

@@ -61,9 +61,19 @@ function userSetup() {
 // display game instructions
 function gameInstructions() {
     // each stage will contain one or many enemies to defeat
-    // in order to pass the stage, you must clear all enemies
-    // each stage will have instructions special to that stage
-    // as you progress, you will be awarded new weapons and healing points
+    console.log("Each stage will contain one or many enemies to defeat");
+    setTimeout(() => {
+        console.log("In order to pass the stage, you must clear all enemies");
+    }, 1000);
+    setTimeout(() => {
+        console.log("Each stage will have instructions special to that stage");
+    }, 2000);
+    setTimeout(() => {
+        console.log("As you progress, you will be awarded new weapons and healing points");
+    }, 3000);
+    setTimeout(() => {
+        console.log("You can save your progress at the end of each stage");
+    }, 4000);
 }
 
 // character choice

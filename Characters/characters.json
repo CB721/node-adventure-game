@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Marx",
+        "attack-style": "brute",
+        "weapon": "sword",
+        "winning-phrases": [
+            "I won!", "Take that, chump!", "All I do is win, win, win!"
+        ],
+        "losing-phrases": [
+            "I lost...", "How will I ever beat this guy?", "It is all hopeless!"
+        ],
+        "attack": 5
+    },
+    {
+        "name": "Slippy",
+        "attack-style": "sly",
+        "weapon": "bow and arrow",
+        "winning-phrases": [
+            "Victory is easy", "I never doubted it for a second", "What opponent?"
+        ],
+        "losing-phrases": [
+            "This was disgraceful...", "I must go into exile...", "How can I ever show my face around here again?"
+        ],
+        "attack": 3
+    },
+    {
+        "name": "Latree",
+        "attack-style": "wizard",
+        "weapon": "spells",
+        "winning-phrases": [
+            "A victory is only as such if the next battle is won", "The power of the mind is unparalleled", "Harry Potter has nothing on me!"
+        ],
+        "losing-phrases": [
+            "I must return to my training...", "A powerful foe indeed...", "I shall return stronger than ever!"
+        ],
+        "attack": 7
+    },
+    {
+        "name": "J-Dog",
+        "attack-style": "brute",
+        "weapon": "club",
+        "winning-phrases": [
+            "J-Dog in the house!", "I've eaten meals bigger than that for breakfase!", "I am so jacked!"
+        ],
+        "losing-phrases": [
+            "Too swole for this battle...", "In my mind, I already won...", "I'll never hear the end of this from Osman..."
+        ],
+        "attack": 6
+    },
+    {
+        "name": "Osman",
+        "attack-style": "sly",
+        "weapon": "fists",
+        "winning-phrases": [
+            "Fists of fury!", "Who knew I was that good?  Oh right, me!", "I am unstoppable!"
+        ],
+        "losing-phrases": [
+            "I'll get 'em next time...", "Maybe I need to try something else...", "How can I explain this to J-Dog?"
+        ],
+        "attack": 3
+    }
+]
