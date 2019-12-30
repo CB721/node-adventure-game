@@ -1,0 +1,22 @@
+{
+  "name": "adventure-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CB721/node-adventure-game.git"
+  },
+  "author": "Clint Brodar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CB721/node-adventure-game/issues"
+  },
+  "homepage": "https://github.com/CB721/node-adventure-game#readme",
+  "dependencies": {
+    "inquirer": "^7.0.1"
+  }
+}
