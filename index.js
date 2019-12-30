@@ -1,18 +1,18 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const util = require('util');
-
-const readSaveFile = util.promisify(fs.readFile);
+const characters = require('./Characters/characters.json');
+const enemies = require('./Characters/enemies.json');
 
 // welcome message
 console.log("Welcome to the game!");
 let username = "";
 let curStage = 0;
 let health = 99;
-let weapons = {}
+let weapons = {};
+let character = {};
 
 // check for saved file
-readSaveFile("data.json", "utf8", function (err, data) {
+fs.readFile("data.json", "utf8", function (err, data) {
     if (err) {
         // create a user
         userSetup();
@@ -74,9 +74,43 @@ function gameInstructions() {
     setTimeout(() => {
         console.log("You can save your progress at the end of each stage");
     }, 4000);
+    setTimeout(() => {
+        charSelect();
+    }, 5000);
 }
 
 // character choice
+function charSelect() {
+    inquirer
+        .prompt([
+            {
+                type: "checkbox",
+                name: "char",
+                message: "Which character would you like to use?",
+                choices: characters
+            }
+        ])
+        .then(res => {
+            character = characters.filter(character => character.name === res.char[0]);
+            save();
+        });
+}
+
+function save() {
+    const userInfo = {
+        username,
+        character: character[0],
+        health,
+        weapons,
+        curStage
+    }
+    fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("Saved");
+    });
+}
 // based on current stage, reference particular stage
 // at the end of each stage, save to data.json file
 // once game is completed, display congratulations message
