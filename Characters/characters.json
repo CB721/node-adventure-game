@@ -9,9 +9,9 @@
         "losing-phrases": [
             "I lost...", "How will I ever beat this guy?", "It is all hopeless!"
         ],
-        "attack": 5,
+        "attack": 12,
         "heal": 5,
-        "block": 5
+        "block": 7
     },
     {
         "name": "Slippy",
@@ -23,9 +23,9 @@
         "losing-phrases": [
             "This was disgraceful...", "I must go into exile...", "How can I ever show my face around here again?"
         ],
-        "attack": 3,
+        "attack": 10,
         "heal": 7,
-        "block": 5
+        "block": 7
     },
     {
         "name": "Latree",
@@ -37,9 +37,9 @@
         "losing-phrases": [
             "I must return to my training...", "A powerful foe indeed...", "I shall return stronger than ever!"
         ],
-        "attack": 7,
+        "attack": 14,
         "heal": 3,
-        "block": 5
+        "block": 7
     },
     {
         "name": "J-Dog",
@@ -51,9 +51,9 @@
         "losing-phrases": [
             "Too swole for this battle...", "In my mind, I already won...", "I'll never hear the end of this from Osman..."
         ],
-        "attack": 6,
+        "attack": 13,
         "heal": 4,
-        "block": 5
+        "block": 7
     },
     {
         "name": "Osman",
@@ -65,8 +65,8 @@
         "losing-phrases": [
             "I'll get 'em next time...", "Maybe I need to try something else...", "How can I explain this to J-Dog?"
         ],
-        "attack": 3,
+        "attack": 10,
         "heal": 7,
-        "block": 5
+        "block": 7
     }
 ]
