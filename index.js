@@ -1,12 +1,15 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const characters = require('./Characters/characters.json');
+const normalStages = require('./stages/normal');
+const bossStages = require('./stages/boss');
+const finalBossStage = require('./stages/finalBoss');
 const enemies = require('./Characters/enemies.json');
 
 // welcome message
 console.log("Welcome to the game!");
 let username = "";
-let curStage = 0;
+let curStage = 1;
 let health = 99;
 let weapons = {};
 let character = {};
@@ -34,11 +37,21 @@ function continueGame(data) {
         .then(res => {
             if (res.continue) {
                 // continue from last save point
-                console.log(data);
+                continueFromSave(JSON.parse(data));
             } else {
                 userSetup();
             }
         })
+}
+
+function continueFromSave(data) {
+    username = data.username;
+    character = data.character;
+    curStage = data.curStage;
+    health = data.health;
+    weapons = data.weapons;
+    console.log("Data loaded successfully");
+    stageSelection();
 }
 
 function userSetup() {
@@ -92,11 +105,14 @@ function charSelect() {
         ])
         .then(res => {
             character = characters.filter(character => character.name === res.char[0]);
-            save();
+            weapons = {
+                
+            }
+            createProfile();
         });
 }
 
-function save() {
+function createProfile() {
     const userInfo = {
         username,
         character: character[0],
@@ -109,8 +125,36 @@ function save() {
             return console.log(err);
         }
         console.log("Saved");
+        stageSelection();
     });
 }
+
 // based on current stage, reference particular stage
+function stageSelection() {
+    // select enemies based on stage
+    const stageEnemies = [];
+    for (let i = 0; i < curStage; i++) {
+        const randomNum = Math.floor(Math.random() * 3);
+        stageEnemies.push(enemies[randomNum]);
+    }
+    if (curStage > 0 && curStage < 5) {
+        const earlyStage = normalStages.begin(curStage, character, username, stageEnemies, health, weapons);
+    }
+    if (curStage > 5 && curStage < 10) {
+
+    }
+    if (curStage > 10 && curStage < 15) {
+
+    }
+    if (curStage === 5 || curStage === 10 || curStage === 15) {
+
+    }
+    if (curStage === 16) {
+
+    }
+    // once game is completed, display congratulations message
+    if (curStage === 17) {
+        console.log("Congratulations on completing the game!");
+    }
+}
 // at the end of each stage, save to data.json file
-// once game is completed, display congratulations message
