@@ -10,12 +10,6 @@ const win = require('./win');
 
 module.exports = {
     turn: function (difficulty, character, stageEnemies, health, isPlayerTurn) {
-        // let userAttack = character.attack;
-        // let userBlock = character.block;
-        // let userHeal = character.heal;
-        // let userHealth = health;
-        // let enemies = stageEnemies;
-
         if (isPlayerTurn) {
             this.userAction(difficulty, character, stageEnemies, health);
         } else {
@@ -25,6 +19,7 @@ module.exports = {
     userAction: function (difficulty, character, stageEnemies, health) {
         let enemyHealth = stageEnemies[0].health;
         let enemyBlock = stageEnemies[0].block;
+        let userHealth = health;
         inquirer
             .prompt([
                 {
@@ -43,6 +38,9 @@ module.exports = {
                     this.turn(difficulty, character, stageEnemies, health, false);
                 } else {
                     const healRes = heal.heal(health, character.heal);
+                    userHealth = healRes;
+                    console.log("You health is now at " + userHealth + "hp.");
+                    this.turn(difficulty, character, stageEnemies, health, false);
                 }
             });
     }
