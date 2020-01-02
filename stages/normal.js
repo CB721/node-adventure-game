@@ -1,7 +1,7 @@
 const game = require('../game/game');
 
 module.exports = {
-    begin: function(curStage, character, username, stageEnemies, health, weapons) {
+    begin: function(curStage, character, username, stageEnemies, health, weapons, lives) {
         let difficulty = 1;
         for (let i = 0; i < curStage; i++) {
             difficulty += difficulty * curStage;
@@ -13,6 +13,7 @@ module.exports = {
             }, 500);
         } else {
             setTimeout(() => {
+                console.log("You have selected " + character.name + ".");
                 console.log("Fight!");
             }, 500);
         }
@@ -20,10 +21,7 @@ module.exports = {
             for (let i = 0; i < stageEnemies.length; i++) {
                 console.log("You are facing a " + stageEnemies[i].name + "!");
             }
-            this.startMatch(difficulty, character, stageEnemies, health, weapons);
+            game.turn(difficulty, character, stageEnemies, health, true, curStage, weapons, lives, username);
         }, 1000);
-    },
-    startMatch: function(difficulty, character, stageEnemies, health, weapons) {
-        game.turn(difficulty, character, stageEnemies, health, weapons);
     }
 }

@@ -11,7 +11,7 @@
         ],
         "attack": 12,
         "heal": 5,
-        "block": 7
+        "block": 12
     },
     {
         "name": "Slippy",
@@ -25,7 +25,7 @@
         ],
         "attack": 10,
         "heal": 7,
-        "block": 7
+        "block": 12
     },
     {
         "name": "Latree",
@@ -39,7 +39,7 @@
         ],
         "attack": 14,
         "heal": 3,
-        "block": 7
+        "block": 12
     },
     {
         "name": "J-Dog",
@@ -53,7 +53,7 @@
         ],
         "attack": 13,
         "heal": 4,
-        "block": 7
+        "block": 12
     },
     {
         "name": "Osman",
@@ -67,6 +67,6 @@
         ],
         "attack": 10,
         "heal": 7,
-        "block": 7
+        "block": 12
     }
 ]

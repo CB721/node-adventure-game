@@ -1,7 +1,8 @@
 module.exports = {
     defend: function(userHealth, enemyAttack, userBlock, difficulty) {
         // subtact attack by user block
-        let totalAttack = enemyAttack * difficulty;
+        const randomAttackValue = Math.floor(Math.random() * difficulty);
+        let totalAttack = enemyAttack * randomAttackValue;
         let defendArr = [];
         // return user health
         if (totalAttack - userBlock > 0) {
