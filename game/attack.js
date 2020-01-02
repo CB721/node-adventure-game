@@ -1,14 +1,10 @@
 module.exports = {
-    attack: function (userAttack, enemyHealth, enemyBlock, difficulty) {
+    attack: function (userAttack, enemyHealth, enemyBlock, curStage) {
         // multiply enemy block by difficulty
-        let totalBlock = 0;
-        if (enemyBlock * difficulty >= userAttack * (difficulty / 2)) {
-            totalBlock = Math.round(enemyBlock / 2);
-        } else {
-            totalBlock = Math.round(enemyBlock * (difficulty / 2));
-        }
+        let totalBlock = enemyBlock * curStage;
+        let attack = userAttack * curStage;
         // subtact attack by total enemy block
-        const totalAttack = (userAttack * (difficulty / 2)) - totalBlock;
+        let totalAttack = attack - totalBlock;
         // return enemy health
         const attackArr = [(enemyHealth - totalAttack), totalAttack];
         return attackArr;

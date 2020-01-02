@@ -21,7 +21,7 @@ let lives = 3;
 fs.readFile("data.json", "utf8", function (err, data) {
     if (err) {
         // create a user
-        userSetup();
+        controller.userSetup();
     } else {
         // ask user if they want to continue or create a new game file
         controller.continueGame(data);
@@ -43,7 +43,23 @@ const controller = {
                     // continue from last save point
                     this.continueFromSave(JSON.parse(data));
                 } else {
-                    userSetup();
+                    console.log("This will erase any existing saved information...");
+                    inquirer
+                        .prompt([
+                            {
+                                type: "confirm",
+                                name: "restart",
+                                message: "Would you like to delete and restart the game?"
+                            }
+                        ])
+                        
+                        .then(res => {
+                            if (res.restart) {
+                                this.userSetup();
+                            } else {
+                                this.continueFromSave(JSON.parse(data));
+                            }
+                        })
                 }
             })
     },
@@ -66,13 +82,18 @@ const controller = {
                 {
                     type: "input",
                     name: "username",
-                    message: "What is your username?"
+                    message: "Please create a username"
                 }
             ])
             .then(res => {
-                // set user details to global variables
-                username = res.username;
-                this.gameInstructions();
+                if (res.username !== "" || res.username.match(/^[a-zA-Z]+$/)) {
+                    // set user details to global variables
+                    username = res.username;
+                    this.gameInstructions();
+                } else {
+                    console.log("Please enter a valid username to continue...");
+                    this.userSetup();
+                }
             })
     },
 
@@ -129,17 +150,21 @@ const controller = {
             curStage,
             lives
         }
+        const thisIsThis = this;
         fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
             if (err) {
                 return console.log(err);
+            } else {
+                console.log("Saved");
+                thisIsThis.stageSelection();
             }
-            console.log("Saved");
-            this.stageSelection();
         });
     },
 
     // based on current stage, reference particular stage
     stageSelection: function () {
+        console.log("You have " + lives + " lives remaining...");
+        console.log("You have " + health + "hp remaining...");
         // select enemies based on stage
         const stageEnemies = [];
         for (let i = 0; i < curStage; i++) {
@@ -147,13 +172,13 @@ const controller = {
             stageEnemies.push(enemies[randomNum]);
         }
         if (curStage > 0 && curStage < 5) {
-            const earlyStages = normalStages.begin(curStage, character, username, stageEnemies, health, weapons, lives);
+            normalStages.begin(curStage, character, username, stageEnemies, health, weapons, lives);
         }
         if (curStage > 5 && curStage < 10) {
-            const middleStages = normalStages.begin(curStage, character, username, stageEnemies, health, weapons, lives);
+            normalStages.begin(curStage, character, username, stageEnemies, health, weapons, lives);
         }
         if (curStage > 10 && curStage < 15) {
-            const finalStages = normalStages.begin(curStage, character, username, stageEnemies, health, weapons, lives);
+            normalStages.begin(curStage, character, username, stageEnemies, health, weapons, lives);
         }
         if (curStage === 5 || curStage === 10 || curStage === 15) {
 

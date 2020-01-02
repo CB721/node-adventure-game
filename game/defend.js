@@ -1,17 +1,17 @@
 module.exports = {
-    defend: function(userHealth, enemyAttack, userBlock, difficulty) {
+    defend: function(userHealth, enemyAttack, userBlock, curStage) {
+        const block = userBlock + curStage;
+        console.log("You were able to prevent " + block + "hp of damage.");
         // subtact attack by user block
-        const randomAttackValue = Math.floor(Math.random() * difficulty);
-        let totalAttack = enemyAttack * randomAttackValue;
-        let defendArr = [];
+        const totalAttack = enemyAttack * curStage;
         // return user health
-        if (totalAttack - userBlock > 0) {
+        if (totalAttack - block > 0) {
             // new user health, hp lost
-            defendArr = [(userHealth - (totalAttack - userBlock)), (totalAttack - userBlock)];
+            let defendArr = [(userHealth - (totalAttack - block)), (totalAttack - block)];
             return defendArr;
         } else {
-            // new user health, hp lost
-            defendArr = [userHealth, 0];
+            // user health, hp lost
+            let defendArr = [userHealth, 0];
             return defendArr;
         }
     }

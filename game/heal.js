@@ -1,12 +1,8 @@
 module.exports = {
-    heal: function(userHealth, userHeal) {
+    heal: function (userHealth, userHeal, curStage) {
         // increase user health by user heal
-        let totalHealth = userHealth + userHeal;
+        let totalHealth = userHealth + (Math.round((curStage * userHeal) / 2));
         // return user health
-        if (totalHealth > 100) {
-            return userHealth;
-        } else {
-            return totalHealth;
-        }
+        return totalHealth;
     }
 }

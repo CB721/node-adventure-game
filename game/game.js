@@ -6,34 +6,31 @@ const defend = require('./defend');
 const heal = require('./heal');
 
 module.exports = {
-    turn: function (difficulty, character, stageEnemies, health, isPlayerTurn, curStage, weapons, lives, username) {
+    turn: function (character, stageEnemies, health, isPlayerTurn, curStage, weapons, lives, username) {
         let userHealth = health;
-        let enemyAttack = stageEnemies[0].attack;
         let userBlock = character.block;
         if (health <= 0) {
             console.log("You have been defeated!");
             this.save(health, character, weapons, username, curStage, lives, username);
         }
-        if (stageEnemies[0].health <= 0) {
-            console.log(stageEnemies[0].name + " has been defeated!");
-            stageEnemies.shift();
-        }
         if (stageEnemies.length < 1) {
             console.log("You have completed this stage");
             this.save(health, character, weapons, username, curStage, lives, username);
-        }
-        if (isPlayerTurn) {
-            console.log("You have " + health + "hp remaining...");
-            this.userAction(difficulty, character, stageEnemies, health, curStage, weapons, lives, username);
         } else {
-            console.log("The " + stageEnemies[0].name + " attacks you...");
-            const defendRes = defend.defend(userHealth, enemyAttack, userBlock, difficulty);
-            userHealth = defendRes[0];
-            console.log(defendRes[1] + "hp was lost!");
-            this.turn(difficulty, character, stageEnemies, userHealth, true, curStage, weapons, lives, username);
+            let enemyAttack = stageEnemies[0].attack;
+            if (isPlayerTurn) {
+                console.log("You have " + health + "hp remaining...");
+                this.userAction(character, stageEnemies, health, curStage, weapons, lives, username);
+            } else {
+                console.log("The " + stageEnemies[0].name + " attacks you...");
+                const defendRes = defend.defend(userHealth, enemyAttack, userBlock, curStage);
+                userHealth = defendRes[0];
+                console.log(defendRes[1] + "hp was lost!");
+                this.turn(character, stageEnemies, userHealth, true, curStage, weapons, lives, username);
+            }
         }
     },
-    userAction: function (difficulty, character, stageEnemies, health, curStage, weapons, lives, username) {
+    userAction: function (character, stageEnemies, health, curStage, weapons, lives, username) {
         let enemyHealth = stageEnemies[0].health;
         let enemyBlock = stageEnemies[0].block;
         let userHealth = health;
@@ -48,28 +45,35 @@ module.exports = {
             .then(res => {
                 if (res.action) {
                     console.log("You attack!");
-                    const attackRes = attack.attack(character.attack, enemyHealth, enemyBlock, difficulty);
+                    const attackRes = attack.attack(character.attack, enemyHealth, enemyBlock, curStage);
                     stageEnemies[0].health = attackRes[0];
                     console.log("The " + stageEnemies[0].name + " took " + attackRes[1] + " damage!");
-                    console.log("They now have " + stageEnemies[0].health + "hp remaining!");
-                    this.turn(difficulty, character, stageEnemies, health, false, curStage, weapons, lives, username);
+                    if (attackRes[0] <= 0) {
+                        console.log(stageEnemies[0].name + " has been defeated!");
+                        stageEnemies.shift();
+                    } else {
+                        console.log("They now have " + stageEnemies[0].health + "hp remaining!");
+                    }
+                    this.turn(character, stageEnemies, health, false, curStage, weapons, lives, username);
                 } else {
-                    const healRes = heal.heal(health, character.heal);
+                    const healRes = heal.heal(health, character.heal, curStage);
                     userHealth = healRes;
                     console.log("You health is now at " + userHealth + "hp.");
-                    this.turn(difficulty, character, stageEnemies, userHealth, false, curStage, weapons, lives, username);
+                    this.turn(character, stageEnemies, userHealth, false, curStage, weapons, lives, username);
                 }
             });
     },
     save: function (health, character, weapons, username, curStage, lives, username) {
         let userLives = 3;
         let stage = 0;
+        const randomNum = Math.floor(Math.random() * 2);
         if (health <= 0) {
             health = 99;
             if (lives - 1 <= 0) {
                 stage = curStage - 1;
                 userLives = 3;
                 console.log("You have run out of lives!");
+                console.log(character.losingPhrases[randomNum]);
                 setTimeout(() => {
                     console.log("You have been sent back a level...");
                 }, 1000);
@@ -91,7 +95,8 @@ module.exports = {
             } else {
                 userLives = lives - 1;
                 console.log("You have lost a life!");
-                console.log("You have " + lives + " lives remaining...");
+                console.log("You have " + userLives + " lives remaining...");
+                console.log(character.losingPhrases[randomNum]);
                 const userInfo = {
                     username,
                     character,
@@ -110,7 +115,9 @@ module.exports = {
             }
         } else {
             stage = curStage + 1;
-            character.attack = character.attack + 20;
+            character.attack += 2 * curStage;
+            character.block += 4 * curStage;
+            character.heal += 7 * curStage;
             const userInfo = {
                 username,
                 character,
@@ -119,7 +126,9 @@ module.exports = {
                 curStage: stage,
                 lives
             }
+            console.log(character.winningPhrases[randomNum]);
             console.log("You have made it to stage " + stage + "!");
+            console.log("You have " + userHealth + "hp remaining");
             fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
                 if (err) {
                     return console.log(err);
