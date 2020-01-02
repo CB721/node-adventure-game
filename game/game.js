@@ -11,6 +11,7 @@ module.exports = {
         let userBlock = character.block;
         if (health <= 0) {
             console.log("You have been defeated!");
+            stageEnemies.length = 0;
             this.save(health, character, weapons, username, curStage, lives, username);
         }
         if (stageEnemies.length < 1) {
@@ -44,7 +45,6 @@ module.exports = {
             ])
             .then(res => {
                 if (res.action) {
-                    console.log("You attack!");
                     const attackRes = attack.attack(character.attack, enemyHealth, enemyBlock, curStage);
                     stageEnemies[0].health = attackRes[0];
                     console.log("The " + stageEnemies[0].name + " took " + attackRes[1] + " damage!");
@@ -115,19 +115,22 @@ module.exports = {
             }
         } else {
             stage = curStage + 1;
-            character.attack += 2 * curStage;
-            character.block += 4 * curStage;
-            character.heal += 7 * curStage;
+            character.attack += Math.round(1.7 * curStage);
+            character.block += Math.round(1.4 * curStage);
+            character.heal += Math.round(1.3 * curStage);
+            const healthGained = Math.round(curStage * 1.3)
+            const userHealth = health + healthGained;
             const userInfo = {
                 username,
                 character,
-                health,
+                health: userHealth,
                 weapons,
                 curStage: stage,
                 lives
             }
             console.log(character.winningPhrases[randomNum]);
             console.log("You have made it to stage " + stage + "!");
+            console.log("The game master has granted you " + healthGained + "hp for passing this stage!");
             console.log("You have " + userHealth + "hp remaining");
             fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
                 if (err) {

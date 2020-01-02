@@ -2,50 +2,50 @@
     {
         "name": "Goblin",
         "attack": 9,
-        "health": 25,
+        "health": 28,
         "weapon": "sword",
-        "block": 3
+        "block": 4
     },
     {
         "name": "Troll",
         "attack": 11,
-        "health": 35,
+        "health": 38,
         "weapon": "club",
-        "block": 5
+        "block": 3
     },
     {
         "name": "Fairy",
         "attack": 6,
-        "health": 10,
+        "health": 13,
         "weapon": "wand",
-        "block": 1
+        "block": 5
     },
     {
         "name": "Grick the Ghost",
         "attack": 11,
-        "health": 75,
+        "health": 78,
         "weapon": "ghost",
-        "block": 6
+        "block": 7
     },
     {
         "name": "Trevor the Knight",
         "attack": 18,
-        "health": 60,
+        "health": 63,
         "weapon": "sword",
-        "block": 9
+        "block": 6
     },
     {
         "name": "Castor the Cricket",
         "attack": 17,
-        "health": 85,
+        "health": 87,
         "weapon": "flame ball",
         "block": 8
     },
     {
         "name": "Finity the Frog",
         "attack": 22,
-        "health": 100,
+        "health": 105,
         "weapon": "poison dart",
-        "block": 11
+        "block": 9
     }
 ]

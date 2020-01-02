@@ -144,7 +144,7 @@ const controller = {
     createProfile: function () {
         const userInfo = {
             username,
-            character: character[0],
+            character,
             health,
             weapons,
             curStage,
@@ -172,16 +172,16 @@ const controller = {
             stageEnemies.push(enemies[randomNum]);
         }
         if (curStage > 0 && curStage < 5) {
-            normalStages.begin(curStage, character, username, stageEnemies, health, weapons, lives);
+            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives);
         }
         if (curStage > 5 && curStage < 10) {
-            normalStages.begin(curStage, character, username, stageEnemies, health, weapons, lives);
+            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives);
         }
         if (curStage > 10 && curStage < 15) {
-            normalStages.begin(curStage, character, username, stageEnemies, health, weapons, lives);
+            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives);
         }
         if (curStage === 5 || curStage === 10 || curStage === 15) {
-
+            bossStages.boss(curStage, character[0] || character, username, health, weapons, lives);
         }
         if (curStage === 16) {
 

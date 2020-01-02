@@ -9,9 +9,9 @@
         "losingPhrases": [
             "I lost...", "How will I ever beat this guy?", "It is all hopeless!"
         ],
-        "attack": 12,
-        "heal": 5,
-        "block": 12
+        "attack": 4,
+        "heal": 3,
+        "block": 8
     },
     {
         "name": "Slippy",
@@ -23,9 +23,9 @@
         "losingPhrases": [
             "This was disgraceful...", "I must go into exile...", "How can I ever show my face around here again?"
         ],
-        "attack": 10,
-        "heal": 7,
-        "block": 12
+        "attack": 4,
+        "heal": 4,
+        "block": 7
     },
     {
         "name": "Latree",
@@ -37,23 +37,23 @@
         "losingPhrases": [
             "I must return to my training...", "A powerful foe indeed...", "I shall return stronger than ever!"
         ],
-        "attack": 14,
-        "heal": 3,
-        "block": 12
+        "attack": 6,
+        "heal": 5,
+        "block": 4
     },
     {
         "name": "J-Dog",
         "attack-style": "brute",
         "weapon": "club",
         "winningPhrases": [
-            "J-Dog in the house!", "I've eaten meals bigger than that for breakfase!", "I am so jacked!"
+            "J-Dog in the house!", "I've eaten meals bigger than that for breakfast!", "I am so jacked!"
         ],
         "losingPhrases": [
             "Too swole for this battle...", "In my mind, I already won...", "I'll never hear the end of this from Osman..."
         ],
-        "attack": 13,
-        "heal": 4,
-        "block": 12
+        "attack": 6,
+        "heal": 1,
+        "block": 6
     },
     {
         "name": "Osman",
@@ -65,8 +65,8 @@
         "losingPhrases": [
             "I'll get 'em next time...", "Maybe I need to try something else...", "How can I explain this to J-Dog?"
         ],
-        "attack": 10,
-        "heal": 7,
-        "block": 12
+        "attack": 3,
+        "heal": 6,
+        "block": 6
     }
 ]
