@@ -191,5 +191,7 @@ const controller = {
             console.log("Congratulations on completing the game!");
         }
     },
-    // at the end of each stage, save to data.json file
+    freePlay: function() {
+        
+    }
 }

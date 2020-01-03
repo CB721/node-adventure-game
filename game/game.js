@@ -4,6 +4,7 @@ const fs = require('fs');
 const attack = require('./attack');
 const defend = require('./defend');
 const heal = require('./heal');
+const end = require('./end');
 
 module.exports = {
     turn: function (character, stageEnemies, health, isPlayerTurn, curStage, weapons, lives, username) {
@@ -117,6 +118,7 @@ module.exports = {
             stage = curStage + 1;
             if (stage > 16) {
                 console.log("You have succesfully defeated all enemies! \n The village is now rid of Finity the Frog and her minions!");
+                end.game(username, character, health, weapons);
             } else {
                 character.attack += (3 + (curStage * 2));
                 character.block += (2 + (curStage * 2));
