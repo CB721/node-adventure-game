@@ -14,6 +14,15 @@ module.exports = {
             }, 500);
         }
         setTimeout(() => {
+            function Stats(attack, block, heal) {
+                this.attack = attack;
+                this.block = block;
+                this.heal = heal;
+            }
+            const levelStats = new Stats(character.attack, character.block, character.heal);
+            console.table([levelStats]);
+        }, 750)
+        setTimeout(() => {
             for (let i = 0; i < stageEnemies.length; i++) {
                 console.log("You are facing a " + stageEnemies[i].name + "!");
             }

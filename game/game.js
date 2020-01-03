@@ -115,8 +115,8 @@ module.exports = {
             }
         } else {
             stage = curStage + 1;
-            character.attack += Math.round(1.7 * curStage);
-            character.block += Math.round(1.4 * curStage);
+            character.attack += (3 + (curStage * 2));
+            character.block += (2 + (curStage * 2));
             character.heal += Math.round(1.3 * curStage);
             const healthGained = Math.round(curStage * 1.3)
             const userHealth = health + healthGained;
@@ -128,10 +128,18 @@ module.exports = {
                 curStage: stage,
                 lives
             }
+            function Stats(attack, block, heal) {
+                this.attack = attack;
+                this.block = block;
+                this.heal = heal;
+            }
+            const levelStats = new Stats(character.attack, character.block, character.heal);
             console.log(character.winningPhrases[randomNum]);
             console.log("You have made it to stage " + stage + "!");
             console.log("The game master has granted you " + healthGained + "hp for passing this stage!");
             console.log("You have " + userHealth + "hp remaining");
+            console.log("Game master also boosted your skills!");
+            console.table(levelStats);
             fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
                 if (err) {
                     return console.log(err);

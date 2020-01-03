@@ -6,11 +6,12 @@ module.exports = {
         // increase user health by user heal
         let totalHealth = 0;
         if (coin > 0) {
-            console.log("You gained " + userHeal + "hp!");
-            totalHealth = userHealth + userHeal;
+            console.log("You gained " + (userHeal + 4)+ "hp!");
+            totalHealth = userHealth + (userHeal + 4);
         } else {
-            console.log("You gained " + (userHeal - (curStage * 2)) + "hp!");
-            totalHealth = userHealth + (userHeal - (curStage * 2));
+            console.log("...it worked perfectly!");
+            console.log("You gained " + (userHeal + (curStage * 2) + 4) + "hp!");
+            totalHealth = userHealth + (userHeal + (curStage * 2) + 4);
         }
         // return user health
         return totalHealth;
