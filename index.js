@@ -7,6 +7,8 @@ const normalStages = require('./stages/normal');
 const bossStages = require('./stages/boss');
 const finalBossStage = require('./stages/finalBoss');
 const enemies = require('./Characters/enemies.json');
+const end = require('./game/end');
+const stageNames = require('./Extras/stageNames.json');
 
 // welcome message
 console.log("Welcome to the game!");
@@ -52,7 +54,7 @@ const controller = {
                                 message: "Would you like to delete and restart the game?"
                             }
                         ])
-                        
+
                         .then(res => {
                             if (res.restart) {
                                 this.userSetup();
@@ -184,14 +186,47 @@ const controller = {
             bossStages.boss(curStage, character[0] || character, username, health, weapons, lives);
         }
         if (curStage === 16) {
-
+            finalBossStage.final(character, username, health, weapons, lives);
         }
         // once game is completed, display congratulations message
-        if (curStage === 17) {
+        if (curStage >= 17) {
             console.log("Congratulations on completing the game!");
+            console.log("You keep all of your stats in free play...");
+            console.log("...but you will go back to that point in the game");
+            inquirer
+                .prompt([
+                    {
+                        type: "confirm",
+                        name: "freeplay",
+                        message: "Would you like to start free play?"
+                    }
+                ])
+                .then(res => {
+                    if (res.freeplay) {
+                        this.freePlay();
+                    } else {
+                        end.game(username, character, health, weapons);
+                    }
+                })
         }
     },
-    freePlay: function() {
-        
+    freePlay: function () {
+        const stageArr = [];
+        for (const name in stageNames[0]) {
+            stageArr.push(name + ": " + stageNames[0][name]);
+        }
+        inquirer
+            .prompt([
+                {
+                    type: "checkbox",
+                    name: "stage",
+                    message: "Which stage would you like to play?",
+                    choices: stageArr
+                }
+            ])
+            .then(res => {
+                curStage = parseInt(res.stage[0][0]);
+                this.stageSelection();
+            });
     }
 }

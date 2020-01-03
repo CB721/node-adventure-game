@@ -35,7 +35,7 @@ module.exports = {
             for (let i = 0; i < stageEnemies.length; i++) {
                 console.log("You are facing a " + stageEnemies[i].name + "!");
             }
-            game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username);
+            game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username, false);
         }, 2000);
     }
 }

@@ -7,17 +7,17 @@ const heal = require('./heal');
 const end = require('./end');
 
 module.exports = {
-    turn: function (character, stageEnemies, health, isPlayerTurn, curStage, weapons, lives, username) {
+    turn: function (character, stageEnemies, health, isPlayerTurn, curStage, weapons, lives, username, freePlay) {
         let userHealth = health;
         let userBlock = character.block;
         if (health <= 0) {
             console.log("You have been defeated!");
             stageEnemies.length = 0;
-            this.save(health, character, weapons, username, curStage, lives, username);
+            this.save(health, character, weapons, username, curStage, lives, username, freePlay);
         }
         if (stageEnemies.length < 1) {
             console.log("You have completed this stage");
-            this.save(health, character, weapons, username, curStage, lives, username);
+            this.save(health, character, weapons, username, curStage, lives, username, freePlay);
         } else {
             let enemyAttack = stageEnemies[0].attack;
             if (isPlayerTurn) {
@@ -64,7 +64,7 @@ module.exports = {
                 }
             });
     },
-    save: function (health, character, weapons, username, curStage, lives, username) {
+    save: function (health, character, weapons, username, curStage, lives, username, freePlay) {
         let userLives = 3;
         let stage = 0;
         const randomNum = Math.floor(Math.random() * 2);
