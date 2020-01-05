@@ -1,5 +1,5 @@
 const game = require('../game/game');
-const stageNames = require('../Extras/stageNames.json');
+const stageNames = require('../assets/stageNames.json');
 
 module.exports = {
     begin: function (curStage, character, username, stageEnemies, health, weapons, lives) {

@@ -8,10 +8,10 @@ const bossStages = require('./stages/boss');
 const finalBossStage = require('./stages/finalBoss');
 const enemies = require('./Characters/enemies.json');
 const end = require('./game/end');
-const stageNames = require('./Extras/stageNames.json');
+const stageNames = require('./assets/stageNames.json');
 
 // welcome message
-console.log("Welcome to the game!");
+console.log("Welcome to Node Adventure!");
 let username = "";
 let curStage = 1;
 let health = 99;
