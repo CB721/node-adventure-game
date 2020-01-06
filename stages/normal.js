@@ -1,5 +1,6 @@
 const game = require('../game/game');
 const stageNames = require('../assets/stageNames.json');
+const story = require('../assets/story.json');
 
 module.exports = {
     begin: function (curStage, character, username, stageEnemies, health, weapons, lives) {
@@ -24,18 +25,29 @@ module.exports = {
             console.table([levelStats]);
         }, 750)
         setTimeout(() => {
-            let stageName = "";
             for (const name in stageNames[0]) {
                 if (name == curStage) {
                     console.log("Stage " + name + ": " + stageNames[0][name]);
                 }
             }
-        }, 1250);
+        }, 1050);
+        const stageStories = story[0][curStage];
+        const gameCountdown = 2000 + ((stageStories.length - 1) * 1500);
+        for (let i = 0; i < stageStories.length; i++) {
+            let delay = 1500 + (i * 1500);
+            this.storyLines(stageStories[i], delay, character.name);
+        }
         setTimeout(() => {
             for (let i = 0; i < stageEnemies.length; i++) {
                 console.log("You are facing a " + stageEnemies[i].name + "!");
             }
             game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username, false);
-        }, 2000);
+        }, gameCountdown);
+    },
+    storyLines: function(line, delay, name) {
+        const newLine = line.replace("Hero", name);
+        setTimeout(() => {
+            console.log(newLine);
+        }, delay);
     }
 }

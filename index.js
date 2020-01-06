@@ -166,7 +166,6 @@ const controller = {
     // based on current stage, reference particular stage
     stageSelection: function () {
         console.log("You have " + lives + " lives remaining...");
-        console.log("You have " + health + "hp remaining...");
         // select enemies based on stage
         const stageEnemies = [];
         for (let i = 0; i < curStage; i++) {

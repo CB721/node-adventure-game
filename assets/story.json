@@ -12,7 +12,7 @@
             "Can you be the hero the world needs?"
         ],
         "2": [
-            "Helper Person: 'Hey -insert character name- did you know that you can heal yourself instead of attacking?'",
+            "Helper Person: 'Hey Hero did you know that you can heal yourself instead of attacking?'",
             "Helper Person: 'Just say no when asked if you want to attack'"
         ],
         "3": [
@@ -63,12 +63,12 @@
             "Helper Person: 'In time you will, but now we must "
         ],
         "10": [
-            "Finity: 'Who is this -insert character name- that keeps ruining my work!'",
+            "Finity: 'Who is this Hero that keeps ruining my work!'",
             "***Several Goblins and Fairies scurry away as two trolls remain...",
             "Finity: 'When the world was being torn apart by all of those greedy politicians, who was there to ensure world peace?!'",
             "Troll 1: 'You were Fini-'",
             "Finity: 'And now the people are starting to rebel!  This must be stopped!'",
-            "Troll 2: 'We shall remove -insert character name- from this world!'",
+            "Troll 2: 'We shall remove Hero from this world!'",
             "Finity: 'I forsee that they may be stronger than you think...'",
             "Finity: 'I have sent some to meet him on the edge of the forest.  Go there and assist him...'",
             "Finity: '...while I plan my next move...'"
