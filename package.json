@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/CB721/node-adventure-game#readme",
   "dependencies": {
+    "colors": "^1.4.0",
     "inquirer": "^7.0.1",
     "jest": "^24.9.0"
   }

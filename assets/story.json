@@ -45,7 +45,9 @@
             "***Hero is making his way to the Finity Forest",
             "Helper Person: 'Sir, I just received confirmation on Finity's next point of attack'",
             "***Hero reads over the page",
+            "Hero: 'I can't believe she would do this...'",
             "Hero: 'We must head there immediately!'",
+            "***Hero arrives at his destination...",
             "***The years of decay have really taken a toll...",
             "***What once was, is now obsolute...",
             "***Hero arrives to a familiar place..."
@@ -88,12 +90,15 @@
         "13": [
             "Hero: 'No problem at all!  I bet Helper Person is sitting around in Finity Forest waiting for met to come back.'",
             "Hero: 'In fact, I can see Finity's Labrynth from here!  She won't even see me-'",
-            "***Hero tumbles",
-            "***and tumbles",
-            "***and tumbles down",
-            "***to a dark place..."
+            "***Hero tumbles...",
+            "***...and tumbles...",
+            "***...and tumbles down...",
+            "***...as Finity's minions surround him on all sides!",
+            "***Hero must fight these minions while perpetually falling!"
         ],
         "14": [
+            "***Hero finally lands on the ground",
+            "***Darkness surrounds him on all sides",
             "Hero: 'How could I be so foolish?  Helper Person knew this was one of Finity's traps and I fell for it.'",
             "Hero: 'All I can do is head towards that castle and ask for help...'",
             "***a figure appears in the dark",
@@ -104,9 +109,9 @@
             "Hero: 'Bring it on!'"
         ],
         "15": [
-            "***Hero walks away from the battle",
-            "***He heads towards a light off in the distance",
-            "***Knowing he must spring Finity's trap in order to save the world"
+            "***Hero walks away from the battle.",
+            "***He heads towards a light off in the distance.",
+            "***Knowing he must spring Finity's trap in order to save the world..."
         ],
         "16": [
             "***As Hero walks out of Caster's Castle, he sees a familiar face off in the distance...",

@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const colors = require('colors');
 
 const attack = require('./attack');
 const defend = require('./defend');
@@ -11,23 +12,23 @@ module.exports = {
         let userHealth = health;
         let userBlock = character.block;
         if (health <= 0) {
-            console.log("You have been defeated!");
+            console.log("You have been defeated!".red);
             stageEnemies.length = 0;
             this.save(health, character, weapons, username, curStage, lives, username, freePlay);
         }
         if (stageEnemies.length < 1) {
-            console.log("You have completed this stage");
+            console.log("You have completed this stage".green);
             this.save(health, character, weapons, username, curStage, lives, username, freePlay);
         } else {
             let enemyAttack = stageEnemies[0].attack;
             if (isPlayerTurn) {
-                console.log("You have " + health + "hp remaining...");
+                console.log(colors.green("You have " + health + "hp remaining..."));
                 this.userAction(character, stageEnemies, health, curStage, weapons, lives, username);
             } else {
-                console.log("The " + stageEnemies[0].name + " attacks you...");
+                console.log(colors.red("The " + stageEnemies[0].name + " attacks you..."));
                 const defendRes = defend.defend(userHealth, enemyAttack, userBlock, curStage);
                 userHealth = defendRes[0];
-                console.log(defendRes[1] + "hp was lost!");
+                console.log(colors.red(defendRes[1] + "hp was lost!"));
                 this.turn(character, stageEnemies, userHealth, true, curStage, weapons, lives, username);
             }
         }
@@ -48,12 +49,12 @@ module.exports = {
                 if (res.action) {
                     const attackRes = attack.attack(character.attack, enemyHealth, enemyBlock, curStage);
                     stageEnemies[0].health = attackRes[0];
-                    console.log("The " + stageEnemies[0].name + " took " + attackRes[1] + " damage!");
+                    console.log(colors.green("The " + stageEnemies[0].name + " took " + attackRes[1] + " damage!"));
                     if (attackRes[0] <= 0) {
-                        console.log(stageEnemies[0].name + " has been defeated!");
+                        console.log(colors.bold.green(stageEnemies[0].name + " has been defeated!"));
                         stageEnemies.shift();
                     } else {
-                        console.log("They now have " + stageEnemies[0].health + "hp remaining!");
+                        console.log("They now have " + colors.bold(stageEnemies[0].health) + "hp remaining!");
                     }
                     this.turn(character, stageEnemies, health, false, curStage, weapons, lives, username);
                 } else {
@@ -73,10 +74,10 @@ module.exports = {
             if (lives - 1 <= 0) {
                 stage = curStage - 1;
                 userLives = 3;
-                console.log("You have run out of lives!");
+                console.log("You have run out of lives!".red);
                 console.log(character.losingPhrases[randomNum]);
                 setTimeout(() => {
-                    console.log("You have been sent back a level...");
+                    console.log("You have been sent back a level...".red);
                 }, 1000);
                 const userInfo = {
                     username,
@@ -90,13 +91,13 @@ module.exports = {
                     if (err) {
                         return console.log(err);
                     }
-                    console.log("Saved");
-                    console.log("Restart to continue...");
+                    console.log("Saved".green);
+                    console.log("Restart to continue...".bold);
                 });
             } else {
                 userLives = lives - 1;
-                console.log("You have lost a life!");
-                console.log("You have " + userLives + " lives remaining...");
+                console.log("You have lost a life!".red);
+                console.log(colors.red.bold("You have " + userLives + " lives remaining..."));
                 console.log(character.losingPhrases[randomNum]);
                 const userInfo = {
                     username,
@@ -110,14 +111,14 @@ module.exports = {
                     if (err) {
                         return console.log(err);
                     }
-                    console.log("Saved");
-                    console.log("Restart to continue...");
+                    console.log("Saved".green);
+                    console.log("Restart to continue...".bold);
                 });
             }
         } else {
             stage = curStage + 1;
             if (stage > 16) {
-                console.log("You have succesfully defeated all enemies! \n The village is now rid of Finity the Frog and her minions!");
+                console.log("You have succesfully defeated all enemies! \n The village is now rid of Finity the Frog and her minions!".green.bold);
                 end.game(username, character, health, weapons);
             } else {
                 character.attack += (3 + (curStage * 2));
@@ -143,14 +144,14 @@ module.exports = {
                 console.log("You have made it to stage " + stage + "!");
                 console.log("The game master has granted you " + healthGained + "hp for passing this stage!");
                 console.log("You have " + userHealth + "hp remaining");
-                console.log("Game master also boosted your skills!");
+                console.log("Game master also boosted your skills!".bold);
                 console.table([levelStats]);
                 fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
                     if (err) {
                         return console.log(err);
                     }
-                    console.log("Saved");
-                    console.log("Restart to continue...");
+                    console.log("Saved".green);
+                    console.log("Restart to continue...".bold);
                 });
             }
         }

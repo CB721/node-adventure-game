@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-
+const colors = require('colors');
 
 const characters = require('./Characters/characters.json');
 const normalStages = require('./stages/normal');
@@ -11,7 +11,7 @@ const end = require('./game/end');
 const stageNames = require('./assets/stageNames.json');
 
 // welcome message
-console.log("Welcome to Node Adventure!");
+console.log("Welcome to Node Adventure!".rainbow);
 let username = "";
 let curStage = 1;
 let health = 99;
@@ -45,7 +45,7 @@ const controller = {
                     // continue from last save point
                     this.continueFromSave(JSON.parse(data));
                 } else {
-                    console.log("This will erase any existing saved information...");
+                    console.log("This will erase any existing saved information...".red);
                     inquirer
                         .prompt([
                             {
@@ -73,7 +73,7 @@ const controller = {
         health = data.health;
         weapons = data.weapons;
         lives = data.lives;
-        console.log("Data loaded successfully");
+        console.log("Data loaded successfully".green);
         this.stageSelection();
     },
 
@@ -93,7 +93,7 @@ const controller = {
                     username = res.username;
                     this.gameInstructions();
                 } else {
-                    console.log("Please enter a valid username to continue...");
+                    console.log("Please enter a valid username to continue...".red);
                     this.userSetup();
                 }
             })
@@ -157,7 +157,7 @@ const controller = {
             if (err) {
                 return console.log(err);
             } else {
-                console.log("Saved");
+                console.log("Saved".green);
                 thisIsThis.stageSelection();
             }
         });
@@ -165,7 +165,7 @@ const controller = {
 
     // based on current stage, reference particular stage
     stageSelection: function () {
-        console.log("You have " + lives + " lives remaining...");
+        console.log(colors.bgGreen("You have " + lives + " lives remaining..."));
         // select enemies based on stage
         const stageEnemies = [];
         for (let i = 0; i < curStage; i++) {
@@ -189,9 +189,9 @@ const controller = {
         }
         // once game is completed, display congratulations message
         if (curStage >= 17) {
-            console.log("Congratulations on completing the game!");
-            console.log("You keep all of your stats in free play...");
-            console.log("...but you will go back to that point in the game");
+            console.log("Congratulations on completing the game!".bgGreen);
+            console.log("You keep all of your stats in free play...".inverse);
+            console.log("...but " + "you will go back to that point in the game".bold.underline);
             inquirer
                 .prompt([
                     {

@@ -28,7 +28,7 @@ module.exports = {
             })
     },
     confirmDelete: function(userInfo) {
-        console.log("Continuing will delete all of your progress. \n You say no, your current progress will be saved...");
+        console.log("Continuing will delete all of your progress. \n You say no, your current progress will be saved...".red);
         inquirer
             .prompt([
                 {
@@ -51,7 +51,7 @@ module.exports = {
               console.error(err);
               return;
             } else {
-                console.log("File deleted...");
+                console.log("File deleted...".red);
             }
           })
     },
@@ -60,8 +60,8 @@ module.exports = {
             if (err) {
                 return console.log(err);
             }
-            console.log("Saved");
-            console.log("Restart to continue...");
+            console.log("Saved".green);
+            console.log("Restart to continue...".bold);
         });
     }
 }
