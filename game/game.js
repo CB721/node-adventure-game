@@ -16,24 +16,24 @@ module.exports = {
             stageEnemies.length = 0;
             this.save(health, character, weapons, username, curStage, lives, username, freePlay);
         }
-        if (stageEnemies.length < 1) {
+        if (stageEnemies.length < 1 && health > 0) {
             console.log("You have completed this stage".green);
             this.save(health, character, weapons, username, curStage, lives, username, freePlay);
-        } else {
+        } else if (stageEnemies.length > 0) {
             let enemyAttack = stageEnemies[0].attack;
             if (isPlayerTurn) {
                 console.log(colors.green("You have " + health + "hp remaining..."));
-                this.userAction(character, stageEnemies, health, curStage, weapons, lives, username);
+                this.userAction(character, stageEnemies, health, curStage, weapons, lives, username, freePlay);
             } else {
                 console.log(colors.red("The " + stageEnemies[0].name + " attacks you..."));
                 const defendRes = defend.defend(userHealth, enemyAttack, userBlock, curStage);
                 userHealth = defendRes[0];
                 console.log(colors.red(defendRes[1] + "hp was lost!"));
-                this.turn(character, stageEnemies, userHealth, true, curStage, weapons, lives, username);
+                this.turn(character, stageEnemies, userHealth, true, curStage, weapons, lives, username, freePlay);
             }
         }
     },
-    userAction: function (character, stageEnemies, health, curStage, weapons, lives, username) {
+    userAction: function (character, stageEnemies, health, curStage, weapons, lives, username, freePlay) {
         let enemyHealth = stageEnemies[0].health;
         let enemyBlock = stageEnemies[0].block;
         let userHealth = health;
@@ -56,16 +56,16 @@ module.exports = {
                     } else {
                         console.log("They now have " + colors.bold(stageEnemies[0].health) + "hp remaining!");
                     }
-                    this.turn(character, stageEnemies, health, false, curStage, weapons, lives, username);
+                    this.turn(character, stageEnemies, health, false, curStage, weapons, lives, username, freePlay);
                 } else {
                     const healRes = heal.heal(health, character.heal, curStage);
                     userHealth = healRes;
                     console.log("You health is now at " + userHealth + "hp.");
-                    this.turn(character, stageEnemies, userHealth, false, curStage, weapons, lives, username);
+                    this.turn(character, stageEnemies, userHealth, false, curStage, weapons, lives, username, freePlay);
                 }
             });
     },
-    save: function (health, character, weapons, username, curStage, lives, username, freePlay) {
+    save: function (health, character, weapons, username, curStage, lives, freePlay) {
         let userLives = 3;
         let stage = 0;
         const randomNum = Math.floor(Math.random() * 2);
@@ -96,7 +96,7 @@ module.exports = {
                 });
             } else {
                 userLives = lives - 1;
-                console.log("You have lost a life!".red);
+                console.log("You lost a life!".red);
                 console.log(colors.red.bold("You have " + userLives + " lives remaining..."));
                 console.log(character.losingPhrases[randomNum]);
                 const userInfo = {

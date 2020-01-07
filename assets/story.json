@@ -13,7 +13,8 @@
         ],
         "2": [
             "Helper Person: 'Hey Hero did you know that you can heal yourself instead of attacking?'",
-            "Helper Person: 'Just say no when asked if you want to attack'"
+            "Helper Person: 'Just say no when asked if you want to attack'",
+            "Helper Person: '...but there is no guarantee that it'll work each time!'"
         ],
         "3": [
             "***After defeating the first few minions, Hero is feeling very confident",
