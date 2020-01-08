@@ -69,90 +69,109 @@ module.exports = {
         let userLives = 3;
         let stage = 0;
         const randomNum = Math.floor(Math.random() * 2);
-        if (health <= 0) {
-            health = 99;
-            if (lives - 1 <= 0) {
-                stage = curStage - 1;
-                userLives = 3;
-                console.log("You have run out of lives!".red);
-                console.log(character.losingPhrases[randomNum]);
-                setTimeout(() => {
-                    console.log("You have been sent back a level...".red);
-                }, 1000);
-                const userInfo = {
-                    username,
-                    character,
-                    health,
-                    weapons,
-                    curStage: stage,
-                    lives: userLives
-                }
-                fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
-                    if (err) {
-                        return console.log(err);
-                    }
-                    console.log("Saved".green);
-                    console.log("Restart to continue...".bold);
-                });
-            } else {
-                userLives = lives - 1;
-                console.log("You lost a life!".red);
-                console.log(colors.red.bold("You have " + userLives + " lives remaining..."));
-                console.log(character.losingPhrases[randomNum]);
-                const userInfo = {
-                    username,
-                    character,
-                    health,
-                    weapons,
-                    curStage,
-                    lives: userLives
-                }
-                fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
-                    if (err) {
-                        return console.log(err);
-                    }
-                    console.log("Saved".green);
-                    console.log("Restart to continue...".bold);
-                });
+        if (freePlay) {
+            const userInfo = {
+                username,
+                character,
+                health: 100,
+                weapons,
+                curStage: 17,
+                lives: 3
             }
+            console.log("Free play does not effect your health or lives");
+            fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log("Saved".green);
+                console.log("Restart to continue...".bold);
+            });
         } else {
-            stage = curStage + 1;
-            if (stage > 16) {
-                console.log("You have succesfully defeated all enemies! \n The village is now rid of Finity the Frog and her minions!".green.bold);
-                end.game(username, character, health, weapons);
-            } else {
-                character.attack += (3 + (curStage * 2));
-                character.block += (2 + (curStage * 2));
-                character.heal += Math.round(1.3 * curStage);
-                const healthGained = Math.round(curStage * 1.3)
-                const userHealth = health + healthGained;
-                const userInfo = {
-                    username,
-                    character,
-                    health: userHealth,
-                    weapons,
-                    curStage: stage,
-                    lives
-                }
-                function Stats(attack, block, heal) {
-                    this.attack = attack;
-                    this.block = block;
-                    this.heal = heal;
-                }
-                const levelStats = new Stats(character.attack, character.block, character.heal);
-                console.log(character.winningPhrases[randomNum]);
-                console.log("You have made it to stage " + stage + "!");
-                console.log("The game master has granted you " + healthGained + "hp for passing this stage!");
-                console.log("You have " + userHealth + "hp remaining");
-                console.log("Game master also boosted your skills!".bold);
-                console.table([levelStats]);
-                fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
-                    if (err) {
-                        return console.log(err);
+            if (health <= 0) {
+                health = 99;
+                if (lives - 1 <= 0) {
+                    stage = curStage - 1;
+                    userLives = 3;
+                    console.log("You have run out of lives!".red);
+                    console.log(character.losingPhrases[randomNum]);
+                    setTimeout(() => {
+                        console.log("You have been sent back a level...".red);
+                    }, 1000);
+                    const userInfo = {
+                        username,
+                        character,
+                        health,
+                        weapons,
+                        curStage: stage,
+                        lives: userLives
                     }
-                    console.log("Saved".green);
-                    console.log("Restart to continue...".bold);
-                });
+                    fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
+                        if (err) {
+                            return console.log(err);
+                        }
+                        console.log("Saved".green);
+                        console.log("Restart to continue...".bold);
+                    });
+                } else {
+                    userLives = lives - 1;
+                    console.log("You lost a life!".red);
+                    console.log(colors.red.bold("You have " + userLives + " lives remaining..."));
+                    console.log(character.losingPhrases[randomNum]);
+                    const userInfo = {
+                        username,
+                        character,
+                        health,
+                        weapons,
+                        curStage,
+                        lives: userLives
+                    }
+                    fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
+                        if (err) {
+                            return console.log(err);
+                        }
+                        console.log("Saved".green);
+                        console.log("Restart to continue...".bold);
+                    });
+                }
+            } else {
+                stage = curStage + 1;
+                if (stage > 16) {
+                    console.log("You have succesfully defeated all enemies! \n The village is now rid of Finity the Frog and her minions!".green.bold);
+                    end.game(username, character, health, weapons);
+                } else {
+                    character.attack += (3 + (curStage * 2));
+                    character.block += (2 + (curStage * 2));
+                    character.heal += Math.round(1.3 * curStage);
+                    const healthGained = Math.round(curStage * 1.3)
+                    const userHealth = health + healthGained;
+                    const userInfo = {
+                        username,
+                        character,
+                        health: userHealth,
+                        weapons,
+                        curStage: stage,
+                        lives
+                    }
+                    function Stats(attack, block, heal) {
+                        this.attack = attack;
+                        this.block = block;
+                        this.heal = heal;
+                    }
+                    const levelStats = new Stats(character.attack, character.block, character.heal);
+                    console.log(character.winningPhrases[randomNum]);
+                    console.log("You have made it to stage " + stage + "!");
+                    console.log("The game master has granted you " + healthGained + "hp for passing this stage!");
+                    console.log("You have " + userHealth + "hp remaining");
+                    console.log("Game master also boosted your skills!".bold);
+                    console.table([levelStats]);
+                    fs.writeFile("data.json", JSON.stringify(userInfo, null, '\t'), function (err) {
+                        if (err) {
+                            return console.log(err);
+                        }
+                        console.log("Saved".green);
+                        console.log("Restart to continue...".bold);
+                    });
+                }
             }
         }
     }

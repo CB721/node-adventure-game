@@ -164,7 +164,7 @@ const controller = {
     },
 
     // based on current stage, reference particular stage
-    stageSelection: function () {
+    stageSelection: function (freePlay) {
         console.log(colors.bgGreen("You have " + lives + " lives remaining..."));
         // select enemies based on stage
         const stageEnemies = [];
@@ -173,25 +173,24 @@ const controller = {
             stageEnemies.push(enemies[randomNum]);
         }
         if (curStage > 0 && curStage < 5) {
-            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives);
+            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives, freePlay || false);
         }
         if (curStage > 5 && curStage < 10) {
-            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives);
+            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives, freePlay || false);
         }
         if (curStage > 10 && curStage < 15) {
-            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives);
+            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives, freePlay || false);
         }
         if (curStage === 5 || curStage === 10 || curStage === 15) {
-            bossStages.boss(curStage, character[0] || character, username, health, weapons, lives);
+            bossStages.boss(curStage, character[0] || character, username, health, weapons, lives, freePlay || false);
         }
         if (curStage === 16) {
-            finalBossStage.final(character, username, health, weapons, lives);
+            finalBossStage.final(character, username, health, weapons, lives, freePlay || false);
         }
         // once game is completed, display congratulations message
         if (curStage >= 17) {
             console.log("Congratulations on completing the game!".bgGreen);
             console.log("You keep all of your stats in free play...".inverse);
-            console.log("...but " + "you will go back to that point in the game".bold.underline);
             inquirer
                 .prompt([
                     {
@@ -225,7 +224,7 @@ const controller = {
             ])
             .then(res => {
                 curStage = parseInt(res.stage[0][0]);
-                this.stageSelection();
+                this.stageSelection(true);
             });
     }
 }

@@ -4,7 +4,7 @@ const stageNames = require('../assets/stageNames.json');
 const story = require('../assets/story.json');
 
 module.exports = {
-    begin: function (curStage, character, username, stageEnemies, health, weapons, lives) {
+    begin: function (curStage, character, username, stageEnemies, health, weapons, lives, freePlay) {
         if (curStage === 1) {
             console.log("Welcome to your first match " + username + "!");
             setTimeout(() => {
@@ -38,24 +38,18 @@ module.exports = {
             for (let i = 0; i < stageEnemies.length; i++) {
                 console.log("You are facing a " + stageEnemies[i].name + "!".bold);
             }
-            game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username, false);
+            game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username, freePlay);
         }, gameCountdown + 1000);
     },
-    storyLines: function(line, delay, name) {
+    storyLines: function (line, delay, name) {
         const newLine = line.replace("Hero", name);
         const styleID = line.substring(0, 3);
         switch (styleID) {
             case "***":
                 let bg = line.replace("***", "");
-                // if (bg.substring(0, 3) === "Her") {
-                    setTimeout(() => {
-                        console.log(bg.replace("Hero", name).italic.blue);
-                    }, delay);
-                // } else {
-                //     setTimeout(() => {
-                //         console.log(bg.italic.blue);
-                //     }, delay);
-                // }
+                setTimeout(() => {
+                    console.log(bg.replace("Hero", name).italic.blue);
+                }, delay);
                 break;
             case "Her":
                 setTimeout(() => {

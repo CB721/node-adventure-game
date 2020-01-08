@@ -6,7 +6,7 @@ const enemies = require('../Characters/enemies.json');
 const story = require('../assets/story.json');
 
 module.exports = {
-    final: function (character, username, health, weapons, lives) {
+    final: function (character, username, health, weapons, lives, freePlay) {
         const stageStories = story[0]["16"];
         const gameCountdown = 2500 + ((stageStories.length - 1) * 1500);
         for (let i = 0; i < stageStories.length; i++) {
@@ -27,7 +27,7 @@ module.exports = {
         }, gameCountdown);
         setTimeout(() => {
             console.log("Fight!");
-            game.turn(character, stageEnemies, health, true, 16, weapons, lives, username);
+            game.turn(character, stageEnemies, health, true, 16, weapons, lives, username, freePlay);
         }, gameCountdown + 1000);
     }
 }

@@ -6,7 +6,7 @@ const enemies = require('../Characters/enemies.json');
 const story = require('../assets/story.json');
 
 module.exports = {
-    boss: function(curStage, character, username, health, weapons, lives) {
+    boss: function(curStage, character, username, health, weapons, lives, freePlay) {
         const stageStories = story[0][curStage];
         const gameCountdown = 2500 + ((stageStories.length - 1) * 1500);
         for (let i = 0; i < stageStories.length; i++) {
@@ -45,7 +45,7 @@ module.exports = {
             }, gameCountdown + 1000);
             setTimeout(() => {
                 console.log("...and she brought a super fairy with her!".bold.magenta);
-                game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username);
+                game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username, freePlay);
             }, gameCountdown + 2000);
         }
     }
