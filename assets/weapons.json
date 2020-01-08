@@ -1,0 +1,47 @@
+[
+    {
+        "name": "sword",
+        "attackIncrease": 3,
+        "blockDecrease": 2
+    },
+    {
+        "name": "bow and arrow",
+        "attackIncrease": 4,
+        "blockDecrease": 2
+    },
+    {
+        "name": "wand",
+        "attackIncrease": 2,
+        "blockDecrease": 3
+    },
+    {
+        "name": "club",
+        "attackIncrease": 2,
+        "blockDecrease": 4
+    },
+    {
+        "name": "fists",
+        "attackIncrease": 0,
+        "blockDecrease": 0
+    },
+    {
+        "name": "flame ball",
+        "attackIncrease": 5,
+        "blockDecrease": 3
+    },
+    {
+        "name": "battle axe",
+        "attackIncrease": 6,
+        "blockDecrease": 2
+    },
+    {
+        "name": "giant rock",
+        "attackIncrease": 8,
+        "blockDecrease": 12
+    },
+    {
+        "name": "lightning lance",
+        "attackIncrease": 17,
+        "blockDecrease": 4
+    }
+]

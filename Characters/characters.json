@@ -23,14 +23,14 @@
         "losingPhrases": [
             "This was disgraceful...", "I must go into exile...", "How can I ever show my face around here again?"
         ],
-        "attack": 8,
+        "attack": 11,
         "heal": 4,
-        "block": 7
+        "block": 5
     },
     {
         "name": "Latree",
         "attack-style": "wizard",
-        "weapon": "spells",
+        "weapon": "wand",
         "winningPhrases": [
             "A victory is only as such if the next battle is won", "The power of the mind is unparalleled", "Harry Potter has nothing on me!"
         ],
@@ -65,8 +65,8 @@
         "losingPhrases": [
             "I'll get 'em next time...", "Maybe I need to try something else...", "How can I explain this to J-Dog?"
         ],
-        "attack": 9,
+        "attack": 6,
         "heal": 5,
-        "block": 6
+        "block": 9
     }
 ]

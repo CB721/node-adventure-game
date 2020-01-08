@@ -9,13 +9,14 @@ const finalBossStage = require('./stages/finalBoss');
 const enemies = require('./Characters/enemies.json');
 const end = require('./game/end');
 const stageNames = require('./assets/stageNames.json');
+const allWeapons = require('./assets/weapons.json');
 
 // welcome message
 console.log("Welcome to Node Adventure!".rainbow);
 let username = "";
 let curStage = 1;
 let health = 99;
-let weapons = {};
+let weapons = [];
 let character = {};
 let lives = 3;
 
@@ -136,8 +137,10 @@ const controller = {
             ])
             .then(res => {
                 character = characters.filter(character => character.name === res.char[0]);
-                weapons = {
-
+                for (let i = 0; i < allWeapons.length; i++) {
+                    if (allWeapons[i].name === character.weapon) {
+                        weapons.push(allWeapons[i]);
+                    }
                 }
                 this.createProfile();
             });
