@@ -75,7 +75,7 @@ const controller = {
         weapons = data.weapons;
         lives = data.lives;
         console.log("Data loaded successfully".green);
-        this.stageSelection();
+        this.weaponSelection();
     },
 
     userSetup: function () {
@@ -137,8 +137,9 @@ const controller = {
             ])
             .then(res => {
                 character = characters.filter(character => character.name === res.char[0]);
+                console.log(character[0].weapon);
                 for (let i = 0; i < allWeapons.length; i++) {
-                    if (allWeapons[i].name === character.weapon) {
+                    if (allWeapons[i].name === character[0].weapon) {
                         weapons.push(allWeapons[i]);
                     }
                 }
@@ -166,6 +167,37 @@ const controller = {
         });
     },
 
+    weaponSelection: function (freePlay) {
+        if (weapons.length > 1) {
+            // select weapon
+            inquirer
+                .prompt([
+                    {
+                        type: "checkbox",
+                        message: "Which weapon would you like to select?",
+                        name: "weaponSelection",
+                        choices: weapons
+                    }
+                ])
+                .then(res => {
+                    // character = characters.filter(character => character.name === res.char[0]);
+                    const selectedWeapon = weapons.filter(charWeap => charWeap.name === res.weaponSelection[0])
+                    // add to character attack
+                    character[0].attack += selectedWeapon[0].attackIncrease;
+                    // subtract from character block
+                    character[0].block -= selectedWeapon[0].blockDecrease;
+                    console.log((selectedWeapon[0].name + " increased your attack by " + selectedWeapon[0].attackIncrease).green);
+                    console.log((selectedWeapon[0].name + " descrease your block by " + selectedWeapon[0].blockDecrease).red);
+                    this.stageSelection(freePlay);
+                });
+        } else {
+            character[0].attack += weapons[0].attackIncrease;
+            character[0].block += weapons[0].attackIncrease;
+            console.log((weapons[0].name + " increased your attack by " + weapons[0].attackIncrease).green);
+            console.log((weapons[0].name + " descreased your block by " + weapons[0].blockDecrease).red);
+            this.stageSelection(freePlay);
+        }
+    },
     // based on current stage, reference particular stage
     stageSelection: function (freePlay) {
         console.log(colors.bgGreen("You have " + lives + " lives remaining..."));
@@ -227,7 +259,7 @@ const controller = {
             ])
             .then(res => {
                 curStage = parseInt(res.stage[0][0]);
-                this.stageSelection(true);
+                this.weaponSelection(true);
             });
     }
 }

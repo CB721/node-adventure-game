@@ -21,6 +21,9 @@ module.exports = {
                     totalHealth = userHealth;
                     break;
             }
+            if (totalHealth > 99) {
+                totalHealth = 99;
+            }
             // return user health
             return totalHealth;
         } else {
