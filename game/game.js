@@ -7,6 +7,8 @@ const defend = require('./defend');
 const heal = require('./heal');
 const end = require('./end');
 
+const allWeapons = require('../assets/weapons.json');
+
 module.exports = {
     turn: function (character, stageEnemies, health, isPlayerTurn, curStage, weapons, lives, username, freePlay) {
         let userHealth = health;
@@ -14,11 +16,11 @@ module.exports = {
         if (health <= 0) {
             console.log("You have been defeated!".red);
             stageEnemies.length = 0;
-            this.save(health, character, weapons, username, curStage, lives, username, freePlay);
+            this.save(health, character, weapons, username, curStage, lives, freePlay);
         }
         if (stageEnemies.length < 1 && health > 0) {
             console.log("You have completed this stage".green);
-            this.save(health, character, weapons, username, curStage, lives, username, freePlay);
+            this.save(health, character, weapons, username, curStage, lives, freePlay);
         } else if (stageEnemies.length > 0) {
             let enemyAttack = stageEnemies[0].attack;
             if (isPlayerTurn) {
@@ -135,6 +137,18 @@ module.exports = {
                 }
             } else {
                 stage = curStage + 1;
+                if (curStage === 5) {
+                    console.log(("You have unlocked a " + allWeapons[5].name + "!").rainbow); 
+                    weapons.push(allWeapons[5]);
+                }
+                if (curStage === 10) {
+                    console.log(("You have unlocked a " + allWeapons[6].name + "!").rainbow); 
+                    weapons.push(allWeapons[6]);
+                }
+                if (curStage === 15) {
+                    console.log(("You have unlocked a " + allWeapons[7].name + "!").rainbow); 
+                    weapons.push(allWeapons[7]);
+                }
                 if (stage > 16) {
                     console.log("You have succesfully defeated all enemies! \n The village is now rid of Finity the Frog and her minions!".green.bold);
                     end.game(username, character, health, weapons);

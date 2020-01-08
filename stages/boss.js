@@ -21,7 +21,7 @@ module.exports = {
             stageEnemies.push(enemies[4]);
             setTimeout(() => {
                 console.log(colors.bold.gray("You are facing the great " + enemies[3].name + "!"));
-                game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username);
+                game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username, freePlay);
             }, gameCountdown + 1000);
         }
         if (curStage === 10) {
@@ -33,7 +33,7 @@ module.exports = {
             }, gameCountdown + 1000);
             setTimeout(() => {
                 console.log("...and he brought two trolls with him!".yellow.bold);
-                game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username);
+                game.turn(character, stageEnemies, health, true, curStage, weapons, lives, username, freePlay);
             }, gameCountdown + 2000);
         }
         if (curStage === 15) {

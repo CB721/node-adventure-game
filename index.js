@@ -19,6 +19,7 @@ let health = 99;
 let weapons = [];
 let character = {};
 let lives = 3;
+let freePlay = false;
 
 // check for saved file
 fs.readFile("data.json", "utf8", function (err, data) {
@@ -167,7 +168,7 @@ const controller = {
         });
     },
 
-    weaponSelection: function (freePlay) {
+    weaponSelection: function () {
         if (weapons.length > 1) {
             // select weapon
             inquirer
@@ -181,25 +182,25 @@ const controller = {
                 ])
                 .then(res => {
                     // character = characters.filter(character => character.name === res.char[0]);
-                    const selectedWeapon = weapons.filter(charWeap => charWeap.name === res.weaponSelection[0])
+                    const selectedWeapon = weapons.filter(charWeap => charWeap.name === res.weaponSelection[0]);
                     // add to character attack
-                    character[0].attack += selectedWeapon[0].attackIncrease;
+                    character.attack += selectedWeapon[0].attackIncrease;
                     // subtract from character block
-                    character[0].block -= selectedWeapon[0].blockDecrease;
+                    character.block -= selectedWeapon[0].blockDecrease;
                     console.log((selectedWeapon[0].name + " increased your attack by " + selectedWeapon[0].attackIncrease).green);
                     console.log((selectedWeapon[0].name + " descrease your block by " + selectedWeapon[0].blockDecrease).red);
-                    this.stageSelection(freePlay);
+                    this.stageSelection();
                 });
         } else {
             character[0].attack += weapons[0].attackIncrease;
             character[0].block += weapons[0].attackIncrease;
             console.log((weapons[0].name + " increased your attack by " + weapons[0].attackIncrease).green);
             console.log((weapons[0].name + " descreased your block by " + weapons[0].blockDecrease).red);
-            this.stageSelection(freePlay);
+            this.stageSelection();
         }
     },
     // based on current stage, reference particular stage
-    stageSelection: function (freePlay) {
+    stageSelection: function () {
         console.log(colors.bgGreen("You have " + lives + " lives remaining..."));
         // select enemies based on stage
         const stageEnemies = [];
@@ -208,19 +209,19 @@ const controller = {
             stageEnemies.push(enemies[randomNum]);
         }
         if (curStage > 0 && curStage < 5) {
-            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives, freePlay || false);
+            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives, freePlay);
         }
         if (curStage > 5 && curStage < 10) {
-            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives, freePlay || false);
+            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives, freePlay);
         }
         if (curStage > 10 && curStage < 15) {
-            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives, freePlay || false);
+            normalStages.begin(curStage, character[0] || character, username, stageEnemies, health, weapons, lives, freePlay);
         }
         if (curStage === 5 || curStage === 10 || curStage === 15) {
-            bossStages.boss(curStage, character[0] || character, username, health, weapons, lives, freePlay || false);
+            bossStages.boss(curStage, character[0] || character, username, health, weapons, lives, freePlay);
         }
         if (curStage === 16) {
-            finalBossStage.final(character, username, health, weapons, lives, freePlay || false);
+            finalBossStage.final(character, username, health, weapons, lives, freePlay);
         }
         // once game is completed, display congratulations message
         if (curStage >= 17) {
@@ -236,14 +237,15 @@ const controller = {
                 ])
                 .then(res => {
                     if (res.freeplay) {
-                        this.freePlay();
+                        freePlay = true;
+                        this.freePlayStage();
                     } else {
                         end.game(username, character, health, weapons);
                     }
                 })
         }
     },
-    freePlay: function () {
+    freePlayStage: function () {
         const stageArr = [];
         for (const name in stageNames[0]) {
             stageArr.push(name + ": " + stageNames[0][name]);
@@ -259,7 +261,7 @@ const controller = {
             ])
             .then(res => {
                 curStage = parseInt(res.stage[0][0]);
-                this.weaponSelection(true);
+                this.weaponSelection();
             });
     }
 }
