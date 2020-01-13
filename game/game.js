@@ -7,6 +7,8 @@ const defend = require('./defend');
 const heal = require('./heal');
 const end = require('./end');
 
+// const Stats = require('./Stats');
+
 const allWeapons = require('../assets/weapons.json');
 
 module.exports = {

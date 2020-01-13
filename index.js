@@ -10,6 +10,7 @@ const enemies = require('./Characters/enemies.json');
 const end = require('./game/end');
 const stageNames = require('./assets/stageNames.json');
 const allWeapons = require('./assets/weapons.json');
+const sideChallenges = require('./game/SideAdventures/main');
 
 // welcome message
 console.log("Welcome to Node Adventure!".rainbow);
@@ -76,7 +77,25 @@ const controller = {
         weapons = data.weapons;
         lives = data.lives;
         console.log("Data loaded successfully".green);
-        this.weaponSelection();
+        if (curStage > 6) {
+            inquirer
+                .prompt([
+                    {
+                        type: "confirm",
+                        name: "sideAdventures",
+                        message: "Would you like to visit the caves of Enduf?"
+                    }
+                ])
+                .then(res => {
+                    if (res.sideAdventures) {
+                        sideChallenges.intro(character, curStage, weapons, lives, username, health);
+                    } else {
+                        this.weaponSelection();
+                    }
+                });
+        } else {
+            this.weaponSelection();
+        }
     },
 
     userSetup: function () {
