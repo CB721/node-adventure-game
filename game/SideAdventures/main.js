@@ -14,7 +14,7 @@ module.exports = {
         }, 1000);
     },
     levelSelect: function (character, curStage, weapons, lives, username, health) {
-        const choices = ["Speed Demon", "Knowledge is Power", "Rock, Paper, Scissors"];
+        const choices = ["Speed Demon", "Infinity Battle", "Rock, Paper, Scissors"];
         inquirer
             .prompt([
                 {
@@ -33,6 +33,7 @@ module.exports = {
                         two.intro(character, curStage, weapons, lives, username, health);
                         break;
                     default:
+                        three.intro(character, curStage, weapons, lives, username);
                         break;
                 }
             })
