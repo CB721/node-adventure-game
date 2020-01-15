@@ -33,7 +33,8 @@ module.exports = {
         }, 8000);
     },
     game: function (character, curStage, weapons, lives, username, health, timeLeft, keyTotal) {
-        console.log("score total: " + keyTotal);
+        console.clear();
+        console.log("Score total: " + keyTotal);
         // if time left is zero or less than zero, they have lost the game
         if (timeLeft <= 0) {
             this.results(character, curStage, weapons, lives, username, health, false);

@@ -29,7 +29,8 @@ module.exports = {
                     case "Speed Demon":
                         one.intro(character, curStage, weapons, lives, username, health);
                         break;
-                    case "Knowledge is Power":
+                    case "Rock, Paper, Scissors":
+                        two.intro(character, curStage, weapons, lives, username, health);
                         break;
                     default:
                         break;

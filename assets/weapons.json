@@ -42,6 +42,6 @@
     {
         "name": "lightning lance",
         "attackIncrease": 17,
-        "blockDecrease": 4
+        "blockDecrease": 7
     }
 ]
