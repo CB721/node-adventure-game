@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const colors = require('colors');
+const figlet = require('figlet');
 
 const characters = require('./Characters/characters.json');
 const normalStages = require('./stages/normal');
@@ -13,7 +14,10 @@ const allWeapons = require('./assets/weapons.json');
 const sideChallenges = require('./game/SideAdventures/main');
 
 // welcome message
-console.log("Welcome to Node Adventure!".rainbow);
+figlet('Node Adventure!', (err, text) => {
+    if (err) throw err;
+    console.log(text.rainbow);
+});
 let username = "";
 let curStage = 1;
 let health = 99;
@@ -26,10 +30,14 @@ let freePlay = false;
 fs.readFile("data.json", "utf8", function (err, data) {
     if (err) {
         // create a user
-        controller.userSetup();
+        setTimeout(() => {
+            controller.userSetup();
+        }, 250);
     } else {
         // ask user if they want to continue or create a new game file
-        controller.continueGame(data);
+        setTimeout(() => {
+            controller.continueGame(data);
+        }, 250);
     }
 });
 

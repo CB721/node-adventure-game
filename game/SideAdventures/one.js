@@ -6,7 +6,7 @@ const inquirer = require('inquirer');
 
 module.exports = {
     intro: function (character, curStage, weapons, lives, username, health) {
-        console.log("Welcome to Speed Demon!".cyan.bold);
+        console.log("Speed Demon!".cyan.bold);
         setTimeout(() => {
             console.log("You will be presented a key to press".blue);
         }, 1000);

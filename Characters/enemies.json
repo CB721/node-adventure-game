@@ -24,7 +24,7 @@
         "name": "Grick the Gnarl",
         "attack": 11,
         "health": 78,
-        "weapon": "ghost",
+        "weapon": "magic",
         "block": 7
     },
     {
@@ -39,13 +39,13 @@
         "attack": 17,
         "health": 87,
         "weapon": "flame ball",
-        "block": 8
+        "block": 12
     },
     {
         "name": "Finity the Frog",
-        "attack": 22,
+        "attack": 26,
         "health": 105,
         "weapon": "poison dart",
-        "block": 9
+        "block": 17
     }
 ]

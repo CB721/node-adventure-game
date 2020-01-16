@@ -4,10 +4,15 @@ const colors = require('colors');
 const one = require('./one');
 const two = require('./two');
 const three = require('./three');
+const figlet = require('figlet');
 
 module.exports = {
     intro: function (character, curStage, weapons, lives, username, health) {
-        console.log("Welcome to Enduf!".rainbow);
+        figlet('Welcome to Enduf!', (err, text) => {
+            if (err) throw err;
+            console.log(text.rainbow);
+        });
+        // console.log("Welcome to Enduf!".zebra);
         setTimeout(() => {
             console.log("After completing a challenge, you will gain stats or get a new weapon!");
             this.levelSelect(character, curStage, weapons, lives, username, health);

@@ -5,7 +5,7 @@ const allWeapons = require('../../assets/weapons.json');
 
 module.exports = {
     intro: function (character, curStage, weapons, lives, username, health) {
-        console.log("Welcome to Rock, Paper, Scissors!".cyan.bold);
+        console.log("Rock, Paper, Scissors!".cyan.bold);
         setTimeout(() => {
             console.log("Rock smashes scissors, paper covers rock, scissors cut paper".cyan);
         }, 1000);
