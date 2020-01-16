@@ -35,9 +35,9 @@ module.exports = {
         // on clearing all 100 levels, give 20 point boost on all stats and set health to 100
         if (level === 101) {
             console.log("You won!".rainbow.bold);
-            character.attack += 20;
-            character.block += 20;
-            character.heal += 20;
+            character.attack += 25;
+            character.block += 25;
+            character.heal += 25;
             setTimeout(() => {
                 console.log("You received a stat boost!".green);
             }, 1000);
@@ -92,7 +92,7 @@ module.exports = {
         }
     },
     currentStatus: function (character, curStage, weapons, lives, username, health, level, curEnemies) {
-        // console.clear();
+        console.clear();
         console.log("Level: " + level);
         console.log("Your current health: " + health + "hp");
         // console.log("current enemies ", curEnemies);
