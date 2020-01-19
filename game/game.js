@@ -140,15 +140,15 @@ module.exports = {
             } else {
                 stage = curStage + 1;
                 if (curStage === 5) {
-                    console.log(("You have unlocked a " + allWeapons[5].name + "!").rainbow); 
+                    console.log(("You have unlocked a " + allWeapons[5].name + "!").rainbow);
                     weapons.push(allWeapons[5]);
                 }
                 if (curStage === 10) {
-                    console.log(("You have unlocked a " + allWeapons[6].name + "!").rainbow); 
+                    console.log(("You have unlocked a " + allWeapons[6].name + "!").rainbow);
                     weapons.push(allWeapons[6]);
                 }
                 if (curStage === 15) {
-                    console.log(("You have unlocked a " + allWeapons[7].name + "!").rainbow); 
+                    console.log(("You have unlocked a " + allWeapons[7].name + "!").rainbow);
                     weapons.push(allWeapons[7]);
                 }
                 if (stage > 16) {

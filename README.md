@@ -3,6 +3,7 @@
 * A CLI adventure game application where you can select a character, battle enemies and play side missions.
 
 ## Project Walkthrough
+![Demo](assets/adventure-walkthrough.gif)
 
 ### Project Details
 * When first starting the game, the user is prompted to create a username and select a character
@@ -31,6 +32,7 @@
         * If the user wins, the get a point
         * If they lose, they lose a point
         * If they get to 10 points, they can either unlock a weapon or get a stat boost
+* After either playing a level in the game or a side mission, the user's new information is saved to a json file
 
 ### User Stories
 * "As a user, I want to play a game that progressively gets more difficult."
@@ -45,6 +47,7 @@
 * Add ASCII graphics for each character/enemy
 * Remove the need to restart the game after each battle
 * Convert application to a video game
+* Additional tests
 
 ### Technologies Used
 

@@ -2,18 +2,20 @@ const colors = require('colors');
 const game = require('../game/game');
 const stageNames = require('../assets/stageNames.json');
 const story = require('../assets/story.json');
+const figlet = require('figlet');
 
 module.exports = {
     begin: function (curStage, character, username, stageEnemies, health, weapons, lives, freePlay) {
+        console.clear();
         if (curStage === 1) {
             console.log("Welcome to your first match " + username + "!");
             setTimeout(() => {
-                console.log("You have selected " + character.name + " as your fighter.".green);
+                console.log(("You have selected " + character.name + " as your fighter.").green);
             }, 500);
         } else {
             setTimeout(() => {
-                console.log("You are fighting as " + character.name + ".".green);
-                console.log("Fight!");
+                console.log(("You are fighting as " + character.name + ".").green);
+                console.log("Fight!".bold);
             }, 500);
         }
         setTimeout(() => {
@@ -32,7 +34,10 @@ module.exports = {
             this.storyLines(stageStories[i], delay, character.name);
         }
         setTimeout(() => {
-            console.log(colors.bold.bgCyan("Stage " + curStage + ": " + stageNames[0][curStage]));
+            figlet(`Stage ${curStage}: ${stageNames[0][curStage]}`, (err, text) => {
+                if (err) throw err;
+                console.log(text.bgCyan);
+            });
         }, gameCountdown)
         setTimeout(() => {
             for (let i = 0; i < stageEnemies.length; i++) {

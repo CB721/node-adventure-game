@@ -7,6 +7,7 @@ const story = require('../assets/story.json');
 
 module.exports = {
     final: function (character, username, health, weapons, lives, freePlay) {
+        console.clear();
         const stageStories = story[0]["16"];
         const gameCountdown = 2500 + ((stageStories.length - 1) * 1500);
         for (let i = 0; i < stageStories.length; i++) {

@@ -9,7 +9,7 @@
         "losingPhrases": [
             "I lost...", "How will I ever beat this guy?", "It is all hopeless!"
         ],
-        "attack": 9,
+        "attack": 12,
         "heal": 3,
         "block": 8
     },
@@ -23,7 +23,7 @@
         "losingPhrases": [
             "This was disgraceful...", "I must go into exile...", "How can I ever show my face around here again?"
         ],
-        "attack": 11,
+        "attack": 14,
         "heal": 4,
         "block": 5
     },
@@ -37,7 +37,7 @@
         "losingPhrases": [
             "I must return to my training...", "A powerful foe indeed...", "I shall return stronger than ever!"
         ],
-        "attack": 11,
+        "attack": 14,
         "heal": 5,
         "block": 4
     },
@@ -51,7 +51,7 @@
         "losingPhrases": [
             "Too swole for this battle...", "In my mind, I already won...", "I'll never hear the end of this from Osman..."
         ],
-        "attack": 12,
+        "attack": 15,
         "heal": 2,
         "block": 8
     },
@@ -65,7 +65,7 @@
         "losingPhrases": [
             "I'll get 'em next time...", "Maybe I need to try something else...", "How can I explain this to J-Dog?"
         ],
-        "attack": 6,
+        "attack": 9,
         "heal": 5,
         "block": 9
     }

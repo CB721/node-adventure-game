@@ -219,8 +219,8 @@ const controller = {
                     this.stageSelection();
                 });
         } else {
-            character[0].attack += weapons[0].attackIncrease;
-            character[0].block += weapons[0].attackIncrease;
+            character.attack += weapons[0].attackIncrease;
+            character.block += weapons[0].attackIncrease;
             console.log((weapons[0].name + " increased your attack by " + weapons[0].attackIncrease).green);
             console.log((weapons[0].name + " descreased your block by " + weapons[0].blockDecrease).red);
             this.stageSelection();

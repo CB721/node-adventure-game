@@ -1,17 +1,19 @@
 [
     {
         "name": "Goblin",
-        "attack": 9,
+        "attack": 8,
         "health": 28,
         "weapon": "sword",
-        "block": 4
+        "block": 4,
+        "image": " ^(..)^\n >{--}<\n  0  0"
     },
     {
         "name": "Troll",
-        "attack": 11,
+        "attack": 10,
         "health": 38,
         "weapon": "club",
-        "block": 3
+        "block": 3,
+        "image": " (..)\n.-[]-.\n  ||  "
     },
     {
         "name": "Fairy",
